@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio - Auscence I. Charles KANHONOU</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Google Fonts: PT Serif -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet">
+
+  <!-- Configuration Tailwind personnalisée -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"PT Serif"', 'serif'],
+          },
+          colors: {
+            primary: {
+              light: '#6366f1',
+              dark: '#8b5cf6',
+            },
+            secondary: {
+              light: '#f43f5e',
+              dark: '#ec4899',
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* --- Styles personnalisés --- */
+    .pt-serif-regular {
+        font-family: "PT Serif", serif !important;
+        font-weight: 400 !important;
+        font-style: normal !important;
+    }
+
+    .pt-serif-bold {
+        font-family: "PT Serif", serif !important;
+        font-weight: 700 !important;
+        font-style: normal !important;
+    }
+
+    .pt-serif-regular-italic {
+        font-family: "PT Serif", serif !important;
+        font-weight: 400 !important;
+        font-style: italic !important;
+    }
+
+    .pt-serif-bold-italic {
+        font-family: "PT Serif", serif !important;
+        font-weight: 700 !important;
+        font-style: italic !important;
+    }
+
+
+    /* Dégradés globaux */
+    .gradient-bg {
+      background: linear-gradient(135deg, #6366f1 0%, #f43f5e 100%);
+    }
+
+    .dark .gradient-bg {
+      background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+    }
+
+    .card-gradient {
+      background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(244, 63, 94, 0.1) 100%);
+    }
+
+    .dark .card-gradient {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+    }
+
+    /* Effet sur les "skills" */
+    .skill-pill {
+      transition: all 0.3s ease;
+    }
+
+    .skill-pill:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+                  0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    /* Ligne de temps */
+    .timeline-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 24px;
+      top: 32px;
+      height: calc(100% - 32px);
+      width: 2px;
+      background-color: #e5e7eb;
+    }
+
+    .dark .timeline-item:not(:last-child)::after {
+      background-color: #374151;
+    }
+
+    /* Interrupteur mode sombre */
+    .toggle-checkbox:checked {
+      right: 0;
+      background-color: #4f46e5;
+    }
+
+    .toggle-checkbox:checked + .toggle-label {
+      background-color: #8b5cf6;
+    }
+
+    /* Carte portfolio */
+    .portfolio-item {
+      transition: all 0.3s ease;
+      transform-style: preserve-3d;
+    }
+
+    .portfolio-item:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+                  0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    .portfolio-image {
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+      border-top-left-radius: 0.75rem;
+      border-top-right-radius: 0.75rem;
+    }
+
+    /* Filtres portfolio */
+    .filter-btn {
+      transition: all 0.3s ease;
+    }
+
+    .filter-btn.active {
+      background-color: #6366f1;
+      color: white;
+    }
+
+    .dark .filter-btn.active {
+      background-color: #8b5cf6;
+    }
+  </style>
+</head>
+
+<body class=" font-serif bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- Theme Toggle -->
+    <div class="fixed top-4 right-4 z-50">
+        <div class="relative inline-block w-12 mr-2 align-middle select-none">
+            <input type="checkbox" id="theme-toggle"
+                class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer" />
+            <label for="theme-toggle"
+                class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+        </div>
+        <span class="text-sm font-medium">
+            <i class="fas fa-moon dark:hidden"></i>
+            <i class="fas fa-sun hidden dark:inline-block"></i>
+        </span>
+    </div>
+
+    <!-- Header -->
+    <header class="gradient-bg text-white py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center justify-between">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Auscence I. Charles KANHONOU</h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold mb-6">ANALYSTE PROGRAMMEUR</h2>
+                    <p class="text-lg mb-6">Je suis un Analyste Programmeur avec plus de 4 ans d'expérience dans le
+                        développement web et d'applications métier.</p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="mailto:auscencek@gmail.com"
+                            class="flex items-center bg-white bg-opacity-20 hover:bg-opacity-30 px-4 py-2 rounded-full transition">
+                            <i class="fas fa-envelope mr-2"></i> auscencek@gmail.com
+                        </a>
+                        <a href="tel:+22962789340"
+                            class="flex items-center bg-white bg-opacity-20 hover:bg-opacity-30 px-4 py-2 rounded-full transition">
+                            <i class="fas fa-phone mr-2"></i> (229) 62789340 / 95971106
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/3">
+                    <div class="bg-white bg-opacity-10 backdrop-blur-md rounded-2xl p-6 shadow-xl">
+                        <div
+                            class="w-32 h-32 mx-auto mb-4 rounded-full bg-white bg-opacity-20 flex items-center justify-center">
+                            <i class="fas fa-user text-5xl text-white"></i>
+                        </div>
+                        <div class="text-center">
+                            <h3 class="text-xl font-semibold mb-2">Localisation</h3>
+                            <p class="mb-4">Bénin, Abomey-Calavi, Agbocodji</p>
+                            <a href="https://github.com/AUSCENCE" target="_blank"
+                                class="inline-flex items-center px-4 py-2 bg-white bg-opacity-20 hover:bg-opacity-30 rounded-full transition">
+                                <i class="fab fa-github mr-2"></i> GitHub
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+        <!-- About Section -->
+        <section class="mb-16">
+            <div class="flex items-center mb-8">
+                <h2 class="text-3xl font-bold mr-4">À PROPOS DE MOI</h2>
+                <div
+                    class="flex-1 h-1 bg-gradient-to-r from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark rounded-full">
+                </div>
+            </div>
+            <div class="card-gradient rounded-2xl p-8 shadow-lg">
+                <p class="text-lg leading-relaxed">
+                    Analyste-Programmeur chevronné ayant plus de quatres (04) années
+                    d'expérience en conception, élaboration et gestion de solutions logicielles.
+                    Je possède une expertise dans le développement web, desktop et mobile,
+                    les applications professionnelles ainsi que la gestion de bases de données
+                    (conception et administration). Je possède aussi une bonne connaissance
+                    des réseaux et systèmes informatiques, et je suis accoutumé à travailler
+                    dans un environnement agile. Je trouve de l'épanouissement dans la
+                    gestion de projets informatiques et apprécie de partager mes compétences
+                    à travers l'enseignement.
+                </p>
+            </div>
+        </section>
+        <!-- Education & Experience -->
+
+        <div class="flex items-center mb-8">
+            <h2 class="text-3xl font-bold mr-4">Formation</h2>
+            <div
+                class="flex-1 h-1 bg-gradient-to-r from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark rounded-full">
+            </div>
+        </div>
+        <!-- Education -->
+        <section class="mb-16 ">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card-gradient rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-start">
+                        <div class="bg-primary-light dark:bg-primary-dark text-white rounded-full p-3 mr-4">
+                            <i class="fas fa-laptop-code text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Licence - Système Informatique Réseau Informatique</h3>
+                            <p class="text-secondary-light dark:text-secondary-dark font-medium">IFRI - UAC | 2020-2021
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-300">Bénin - Atlantique - Abomey-Calavi</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-gradient rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-start">
+                        <div class="bg-primary-light dark:bg-primary-dark text-white rounded-full p-3 mr-4">
+                            <i class="fas fa-university text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">BTS - Informatique de Gestion</h3>
+                            <p class="text-secondary-light dark:text-secondary-dark font-medium">HECM | 2017-2018</p>
+                            <p class="text-gray-600 dark:text-gray-300">Bénin - Littorale - Cotonou</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-gradient rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-start">
+                        <div class="bg-primary-light dark:bg-primary-dark text-white rounded-full p-3 mr-4">
+                            <i class="fas fa-graduation-cap text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Baccalauréat - Science - Série D</h3>
+                            <p class="text-secondary-light dark:text-secondary-dark font-medium">CEG 1 Abomey |
+                                2015-2016
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-300">Bénin - Zou - Abomey</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-gradient rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-start">
+                        <div class="bg-primary-light dark:bg-primary-dark text-white rounded-full p-3 mr-4">
+                            <i class="fas fa-graduation-cap text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Brevet d'Etude du Premier Cycle ( BEPC ) - Science </h3>
+                            <p class="text-secondary-light dark:text-secondary-dark font-medium">CEG 1 Savalou |
+                                2011-2012
+                            </p>
+                            <p class="text-gray-600 dark:text-gray-300">Bénin - Colline - Savalou</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section class="mb-16 ">
+            <div class="flex items-center mb-8">
+                <h2 class="text-3xl font-bold mr-4">Mes Réalisations</h2>
+                <div
+                    class="flex-1 h-1 bg-gradient-to-r from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark rounded-full">
+                </div>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap gap-3 mb-8">
+                <button
+                    class="filter-btn active px-4 py-2 rounded-full border border-primary-light dark:border-primary-dark"
+                    data-filter="all">Tous</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-primary-light dark:border-primary-dark"
+                    data-filter="web">WordPress</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-primary-light dark:border-primary-dark"
+                    data-filter="mobile">Mobile</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-primary-light dark:border-primary-dark"
+                    data-filter="Laravel">Laravel</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-primary-light dark:border-primary-dark"
+                    data-filter="Java">Spring Boot</button>
+                <button class="filter-btn px-4 py-2 rounded-full border border-primary-light dark:border-primary-dark"
+                    data-filter="react">React</button>
+            </div>
+
+            <!-- Portfolio Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Project 1 -->
+                <div class="portfolio-item card-gradient rounded-xl shadow-lg overflow-hidden" data-category="web">
+                    <img src="image/conceptic.png" alt="Projet Web" class="portfolio-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Conceptic.IO</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4"></p>
+                        <!-- <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">Laravel</span>
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">Vue.js</span>
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">MySQL</span>
+                        </div> -->
+                        <div class="flex justify-between items-center">
+                            <a href="" class="text-primary-light dark:text-primary-dark hover:underline"></a>
+                            <a href="https://conceptic.io/fr/" target="_blank"
+                                class="text-sm px-3 py-1 bg-primary-light dark:bg-primary-dark text-white rounded-full hover:bg-opacity-90 transition">Voir</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 1 -->
+                <div class="portfolio-item card-gradient rounded-xl shadow-lg overflow-hidden" data-category="web">
+                    <img src="image/htccrtip.png" alt="Projet Web" class="portfolio-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">HTC Cetip</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4"></p>
+                        <!-- <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">Laravel</span>
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">Vue.js</span>
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">MySQL</span>
+                        </div> -->
+                        <div class="flex justify-between items-center">
+                            <a href="" class="text-primary-light dark:text-primary-dark hover:underline"></a>
+                            <a href="htccetip.com" target="_blank"
+                                class="text-sm px-3 py-1 bg-primary-light dark:bg-primary-dark text-white rounded-full hover:bg-opacity-90 transition">Voir</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 1 -->
+                <div class="portfolio-item card-gradient rounded-xl shadow-lg overflow-hidden" data-category="web">
+                    <img src="image/abs02.png" alt="Projet Web" class="portfolio-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">ABS Services</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4"></p>
+                        <!-- <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">Laravel</span>
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">Vue.js</span>
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">MySQL</span>
+                        </div> -->
+                        <div class="flex justify-between items-center">
+                            <a href="" class="text-primary-light dark:text-primary-dark hover:underline"></a>
+                            <a href="https://absservicesbenin.com/" target="_blank"
+                                class="text-sm px-3 py-1 bg-primary-light dark:bg-primary-dark text-white rounded-full hover:bg-opacity-90 transition">Voir</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 1 -->
+                <div class="portfolio-item card-gradient rounded-xl shadow-lg overflow-hidden" data-category="react">
+                    <img src="image/abs01.png" alt="Projet Web" class="portfolio-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Atelier des Métaphores</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4"></p>
+                        <!-- <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">Laravel</span>
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">Vue.js</span>
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">MySQL</span>
+                        </div> -->
+                        <div class="flex justify-between items-center">
+                            <a href="" class="text-primary-light dark:text-primary-dark hover:underline"></a>
+                            <a href="https://htcmetaphore.com/" target="_blank"
+                                class="text-sm px-3 py-1 bg-primary-light dark:bg-primary-dark text-white rounded-full hover:bg-opacity-90 transition">Voir</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 1 -->
+                <div class="portfolio-item card-gradient rounded-xl shadow-lg overflow-hidden" data-category="react">
+                    <img src="image/dell.png" alt="Projet Web" class="portfolio-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Projet DWELL</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4"></p>
+                        <!-- <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">Laravel</span>
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">Vue.js</span>
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">MySQL</span>
+                        </div> -->
+                        <div class="flex justify-between items-center">
+                            <a href="" class="text-primary-light dark:text-primary-dark hover:underline"></a>
+                            <a href="https://auxmaxdwello.netlify.app/" target="_blank"
+                                class="text-sm px-3 py-1 bg-primary-light dark:bg-primary-dark text-white rounded-full hover:bg-opacity-90 transition">Voir</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 1 -->
+                <div class="portfolio-item card-gradient rounded-xl shadow-lg overflow-hidden" data-category="react">
+                    <img src="image/cv.png" alt="Projet Web" class="portfolio-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Projet CV</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4"></p>
+                        <!-- <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">Laravel</span>
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">Vue.js</span>
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">MySQL</span>
+                        </div> -->
+                        <div class="flex justify-between items-center">
+                            <a href="" class="text-primary-light dark:text-primary-dark hover:underline"></a>
+                            <a href="https://auxmaxcv.netlify.app/" target="_blank"
+                                class="text-sm px-3 py-1 bg-primary-light dark:bg-primary-dark text-white rounded-full hover:bg-opacity-90 transition">Voir</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 1 -->
+                <div class="portfolio-item card-gradient rounded-xl shadow-lg overflow-hidden" data-category="Laravel">
+                    <img src="image/Ilera.png" alt="Projet Web" class="portfolio-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">IT HOUSE ILERA</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4"></p>
+                        <!-- <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">Laravel</span>
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">Vue.js</span>
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">MySQL</span>
+                        </div> -->
+                        <div class="flex justify-between items-center">
+                            <a href="" class="text-primary-light dark:text-primary-dark hover:underline"></a>
+                            <a href="https://ileira.com/" target="_blank"
+                                class="text-sm px-3 py-1 bg-primary-light dark:bg-primary-dark text-white rounded-full hover:bg-opacity-90 transition">Voir</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 1 -->
+                <div class="portfolio-item card-gradient rounded-xl shadow-lg overflow-hidden" data-category="Laravel">
+                    <img src="image/Jardindesmetaphore.png" alt="Projet Web" class="portfolio-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Jardin des Métaphores</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4"></p>
+                        <!-- <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">Laravel</span>
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">Vue.js</span>
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">MySQL</span>
+                        </div> -->
+                        <div class="flex justify-between items-center">
+                            <a href="" class="text-primary-light dark:text-primary-dark hover:underline"></a>
+                            <a href="http://jardindesmetaphores.com/" target="_blank"
+                                class="text-sm px-3 py-1 bg-primary-light dark:bg-primary-dark text-white rounded-full hover:bg-opacity-90 transition">Voir</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 1 -->
+                <div class="portfolio-item card-gradient rounded-xl shadow-lg overflow-hidden" data-category="Laravel">
+                    <img src="image/Nfacture.jpg" alt="Projet Web" class="portfolio-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">NFacture</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4"></p>
+                        <!-- <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">Laravel</span>
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">Vue.js</span>
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">MySQL</span>
+                        </div> -->
+                        <div class="flex justify-between items-center">
+                            <a href="" class="text-primary-light dark:text-primary-dark hover:underline"></a>
+                            <a href="https://app.nfacture.com/" target="_blank"
+                                class="text-sm px-3 py-1 bg-primary-light dark:bg-primary-dark text-white rounded-full hover:bg-opacity-90 transition">Voir</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 1 -->
+                <div class="portfolio-item card-gradient rounded-xl shadow-lg overflow-hidden" data-category="Laravel">
+                    <img src="image/modecouture.png" alt="Projet Web" class="portfolio-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">Mode Couture</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4"></p>
+                        <!-- <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">Laravel</span>
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">Vue.js</span>
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">MySQL</span>
+                        </div> -->
+                        <div class="flex justify-between items-center">
+                            <a href="" class="text-primary-light dark:text-primary-dark hover:underline"></a>
+                            <a href="https://mode.htcmetaphore.com/" target="_blank"
+                                class="text-sm px-3 py-1 bg-primary-light dark:bg-primary-dark text-white rounded-full hover:bg-opacity-90 transition">Voir</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Project 1 -->
+                <div class="portfolio-item card-gradient rounded-xl shadow-lg overflow-hidden" data-category="Laravel">
+                    <img src="image/fuac.png" alt="Projet Web" class="portfolio-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold mb-2">SFU FUAC</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4"></p>
+                        <!-- <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">Laravel</span>
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">Vue.js</span>
+                            <span class="text-xs px-2 py-1 bg-primary-light dark:bg-primary-dark bg-opacity-20 rounded-full">MySQL</span>
+                        </div> -->
+                        <div class="flex justify-between items-center">
+                            <a href="" class="text-primary-light dark:text-primary-dark hover:underline"></a>
+                            <a href="http://sfu.fondationuac.org/" target="_blank"
+                                class="text-sm px-3 py-1 bg-primary-light dark:bg-primary-dark text-white rounded-full hover:bg-opacity-90 transition">Voir</a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </section>
+        ->
+
+        <div class="flex items-center mb-8">
+            <h2 class="text-3xl font-bold mr-4">Experience</h2>
+            <div
+                class="flex-1 h-1 bg-gradient-to-r from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark rounded-full">
+            </div>
+        </div>
+        <!-- Education -->
+        <section class="mb-16 ">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card-gradient rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-start">
+                        <div class="bg-primary-light dark:bg-primary-dark text-white rounded-full p-3 mr-4">
+                            <i class="fas fa-briefcase text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Chargé du Système Informatique et Réseau (CSIR)</h3>
+                            <em style="color:#6366f1;">Stage Professionnel - Fondation de l’Université
+                                d’Abomey-Calavi</em>
+                            <p class="text-secondary-light dark:text-secondary-dark font-medium">Juin 2024 - Juin 2025
+                            </p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>
+                                    <b>Conception et Développement Logiciel</b> :
+                                    Assurer le développement, l'intégration et la maintenance
+                                    évolutive et corrective des applications.
+                                </li>
+                                <li>
+                                    <b>Infrastructure et Support</b> :
+                                    Gérer la maintenance et le support technique du réseau et du parc
+                                    matériel informatique.
+                                </li>
+                                <li>
+                                    <b>Analyse Fonctionnelle </b>: Recueillir et analyser les besoins des utilisateurs
+                                    afin de proposer des
+                                    solutions techniques et fonctionnelles adaptées. </li>
+                                <li><b>Gestion des données</b> : Gestion des accès des utilisateurs, Sauvegarde des
+                                    données et test de
+                                    restauration selon la politique de sauvegarde.</li>
+                                <li><b>Administration de Serveur Active Directory </b>: Gestions des utilisateurs,
+                                    Création des réservations
+                                    DHCP, Création et gestion des stratégies Groupe GPO
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-gradient rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-start">
+                        <div class="bg-primary-light dark:bg-primary-dark text-white rounded-full p-3 mr-4">
+                            <i class="fas fa-code text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Développeur Full Stack</h3>
+                            <em style="color:#6366f1;"> Consultant ( Prestataire de Service sur projet Cimseller KADJIV
+                                Sarl )</em>
+                            <p class="text-secondary-light dark:text-secondary-dark font-medium"> Octobre 2023 - Juin
+                                2024</p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>
+                                    <b>Analyse et Conception</b>:
+                                    Conduit l'analyse des besoins utilisateurs et formalisé les exigences, menant à
+                                    l'adaptation et l'amélioration des interfaces de l'application Cimseller.
+                                </li>
+                                <li>
+                                    <b>Développement et Qualité</b>:Assuré le développement de nouvelles fonctionnalités
+                                    et la correction
+                                    des anomalies (bugs), garantissant la stabilité et l'évolution de l'application.
+                                </li>
+                                <li>
+                                    <b>Documentation et Formation</b>:Assuré le développement de nouvelles
+                                    fonctionnalités et la correction
+                                    des anomalies (bugs), garantissant la stabilité et l'évolution de l'application.
+                                </li>
+                                <li>
+                                    <b>Déploiement et Support</b>:Géré le suivi post-développement et piloté la mise en
+                                    service réussie de l'application.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-gradient rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-start">
+                        <div class="bg-primary-light dark:bg-primary-dark text-white rounded-full p-3 mr-4">
+                            <i class="fas fa-code text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Développeur Back-End </h3>
+                            <em style="color:#6366f1;"> Consultant Développeur Full-Stack (Prestation de Services) sur
+                                le projet ILERA - IT House </em>
+                            <p class="text-secondary-light dark:text-secondary-dark font-medium"> Janvier 2023 - juin
+                                2023 </p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>
+                                    <b> Conception et Modélisation</b>:
+                                    Réalisation de l'Analyse de Données et de la modélisation logicielle (Diagrammes de
+                                    classes UML) pour structurer l'architecture des systèmes.
+                                </li>
+                                <li>
+                                    <b>Développement Backend (PHP)</b>:Conception et développement d'APIs performantes
+                                    avec le framework Laravel (PHP), en intégrant systématiquement la méthodologie TDD
+                                    (Test-Driven
+                                    Development) pour garantir la qualité du code.
+                                </li>
+                                <li>
+                                    <b>Documentation et Normalisation</b>:Production de documentation d'application
+                                    complète et
+                                    génération de la documentation d'API interactive via Swagger/OpenAPI.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-gradient rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-start">
+                        <div class="bg-primary-light dark:bg-primary-dark text-white rounded-full p-3 mr-4">
+                            <i class="fas fa-code text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Technicienne système informatique</h3>
+                            <em style="color:#6366f1;">Analyste-Programmeur / Développeur Web à Temps Plein chez
+                                Conceptic.io </em>
+                            <p class="text-secondary-light dark:text-secondary-dark font-medium"> Juin 2021 - Juin 2022
+                            </p>
+                            <ul class="list-disc pl-5 mt-2 space-y-1">
+                                <li>
+                                    <b>Développement Web</b>:Pris en charge le développement complet de sites web et
+                                    l'intégration de solutions basées sur le CMS WordPress.
+                                </li>
+                                <li>
+                                    <b>Développement d'Applications</b>:Conçu, développé et mis en œuvre des
+                                    applications Web robustes et sur mesure.
+                                </li>
+                                <li>
+                                    <b>Documentation </b>:Assuré le développement des fonctionnalités.
+
+                                </li>
+                                <li>
+                                    <b>Gestion des Données</b>:Assuré l'analyse, la modélisation et la gestion des bases
+                                    de données pour optimiser les performances d'application de documentation.
+                                </li>
+                                <li>
+                                    <b>Assurance Qualité</b>: Réalisé des tests d'application (fonctionnels et
+                                    techniques) pour garantir la qualité et la fiabilité des livrables.
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Skills -->
+        <section class="mb-16">
+            <div class="flex items-center mb-8">
+                <h2 class="text-3xl font-bold mr-4">Compétences</h2>
+                <div
+                    class="flex-1 h-1 bg-gradient-to-r from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark rounded-full">
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Technical Skills -->
+                <div class="card-gradient rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-code mr-2 text-primary-light dark:text-primary-dark"></i> Techniques
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span
+                            class="skill-pill bg-primary-light dark:bg-primary-dark bg-opacity-20 dark:bg-opacity-20 text-primary-light dark:text-primary-dark px-4 py-2 rounded-full">PHP
+                            (Laravel)</span>
+                        <span
+                            class="skill-pill bg-primary-light dark:bg-primary-dark bg-opacity-20 dark:bg-opacity-20 text-primary-light dark:text-primary-dark px-4 py-2 rounded-full">JavaScript
+                            (React, Angular)</span>
+                        <span
+                            class="skill-pill bg-primary-light dark:bg-primary-dark bg-opacity-20 dark:bg-opacity-20 text-primary-light dark:text-primary-dark px-4 py-2 rounded-full">Java
+                            (Spring Boot)</span>
+                        <span
+                            class="skill-pill bg-primary-light dark:bg-primary-dark bg-opacity-20 dark:bg-opacity-20 text-primary-light dark:text-primary-dark px-4 py-2 rounded-full">Python</span>
+                        <span
+                            class="skill-pill bg-primary-light dark:bg-primary-dark bg-opacity-20 dark:bg-opacity-20 text-primary-light dark:text-primary-dark px-4 py-2 rounded-full">HTML
+                            & CSS</span>
+                        <span
+                            class="skill-pill bg-primary-light dark:bg-primary-dark bg-opacity-20 dark:bg-opacity-20 text-primary-light dark:text-primary-dark px-4 py-2 rounded-full">Bootstrap</span>
+                        <span
+                            class="skill-pill bg-primary-light dark:bg-primary-dark bg-opacity-20 dark:bg-opacity-20 text-primary-light dark:text-primary-dark px-4 py-2 rounded-full">tailwind</span>
+                        <span
+                            class="skill-pill bg-primary-light dark:bg-primary-dark bg-opacity-20 dark:bg-opacity-20 text-primary-light dark:text-primary-dark px-4 py-2 rounded-full">MySQL</span>
+                        <span
+                            class="skill-pill bg-primary-light dark:bg-primary-dark bg-opacity-20 dark:bg-opacity-20 text-primary-light dark:text-primary-dark px-4 py-2 rounded-full">GitHub</span>
+                        <span
+                            class="skill-pill bg-primary-light dark:bg-primary-dark bg-opacity-20 dark:bg-opacity-20 text-primary-light dark:text-primary-dark px-4 py-2 rounded-full">GitLab</span>
+                        <span
+                            class="skill-pill bg-primary-light dark:bg-primary-dark bg-opacity-20 dark:bg-opacity-20 text-primary-light dark:text-primary-dark px-4 py-2 rounded-full">Analyse
+                            de Base de Données</span>
+                    </div>
+                </div>
+
+                <!-- General Skills -->
+                <div class="card-gradient rounded-2xl p-6 shadow-lg">
+                    <h3 class="text-xl font-semibold mb-4 flex items-center">
+                        <i class="fas fa-users mr-2 text-secondary-light dark:text-secondary-dark"></i> Générales
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span
+                            class="skill-pill bg-secondary-light dark:bg-secondary-dark bg-opacity-20 dark:bg-opacity-20 text-secondary-light dark:text-secondary-dark px-4 py-2 rounded-full">Organisé</span>
+                        <span
+                            class="skill-pill bg-secondary-light dark:bg-secondary-dark bg-opacity-20 dark:bg-opacity-20 text-secondary-light dark:text-secondary-dark px-4 py-2 rounded-full">Travail
+                            d'Équipe</span>
+                        <span
+                            class="skill-pill bg-secondary-light dark:bg-secondary-dark bg-opacity-20 dark:bg-opacity-20 text-secondary-light dark:text-secondary-dark px-4 py-2 rounded-full">Respect
+                            des délais</span>
+                        <span
+                            class="skill-pill bg-secondary-light dark:bg-secondary-dark bg-opacity-20 dark:bg-opacity-20 text-secondary-light dark:text-secondary-dark px-4 py-2 rounded-full">Pensée
+                            critique</span>
+                    </div>
+
+                    <h3 class="text-xl font-semibold mt-6 mb-4 flex items-center">
+                        <i class="fas fa-language mr-2 text-secondary-light dark:text-secondary-dark"></i> Langues
+                    </h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span
+                            class="skill-pill bg-secondary-light dark:bg-secondary-dark bg-opacity-20 dark:bg-opacity-20 text-secondary-light dark:text-secondary-dark px-4 py-2 rounded-full">Français</span>
+                        <span
+                            class="skill-pill bg-secondary-light dark:bg-secondary-dark bg-opacity-20 dark:bg-opacity-20 text-secondary-light dark:text-secondary-dark px-4 py-2 rounded-full">English</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications -->
+        <section class="mb-16">
+            <div class="flex items-center mb-8">
+                <h2 class="text-3xl font-bold mr-4">Certifications & Attestation</h2>
+                <div
+                    class="flex-1 h-1 bg-gradient-to-r from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark rounded-full">
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card-gradient rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary-light dark:bg-primary-dark text-white rounded-full p-3 mr-4">
+                            <i class="fas fa-certificate text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Programmez en orienté objet en PHP</h3>
+                    </div>
+                    <p class="text-secondary-light dark:text-secondary-dark font-medium">Juin 2023 - Juin 2024</p>
+                </div>
+                <div class="card-gradient rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary-light dark:bg-primary-dark text-white rounded-full p-3 mr-4">
+                            <i class="fas fa-certificate text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Apprenez à programmer en Java</h3>
+                    </div>
+                    <p class="text-secondary-light dark:text-secondary-dark font-medium">Octobre 2023 - Juin 2024</p>
+                </div>
+                <div class="card-gradient rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary-light dark:bg-primary-dark text-white rounded-full p-3 mr-4">
+                            <i class="fas fa-certificate text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Apprenez la programmation orientée objet avec Python</h3>
+                    </div>
+                    <p class="text-secondary-light dark:text-secondary-dark font-medium">Octobre 2023 - Juin 2024</p>
+                </div>
+                <div class="card-gradient rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary-light dark:bg-primary-dark text-white rounded-full p-3 mr-4">
+                            <i class="fas fa-certificate text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Gérez du code avec Git et GitHub</h3>
+                    </div>
+                </div>
+                <div class="card-gradient rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary-light dark:bg-primary-dark text-white rounded-full p-3 mr-4">
+                            <i class="fas fa-certificate text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Optimisez votre déploiement en créant des conteneurs avec
+                            Docker</h3>
+                    </div>
+                </div>
+                <div class="card-gradient rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary-light dark:bg-primary-dark text-white rounded-full p-3 mr-4">
+                            <i class="fas fa-certificate text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold">Adoptez les API REST pour vos projets web</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- References -->
+        <section>
+            <div class="flex items-center mb-8">
+                <h2 class="text-3xl font-bold mr-4">Références</h2>
+                <div
+                    class="flex-1 h-1 bg-gradient-to-r from-primary-light to-secondary-light dark:from-primary-dark dark:to-secondary-dark rounded-full">
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="card-gradient rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary-light dark:bg-primary-dark text-white rounded-full p-3 mr-4">
+                            <i class="fas fa-user-tie text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Maliki AGNORO</h3>
+                            <p class="text-secondary-light dark:text-secondary-dark">Directeur Exécutif FUAC</p>
+                        </div>
+                    </div>
+                    <div class="pl-16">
+                        <a href="tel:+22997485639"
+                            class="flex items-center text-gray-600 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark transition">
+                            <i class="fas fa-phone mr-2"></i> +229 97 48 56 39
+                        </a>
+                    </div>
+                </div>
+                <div class="card-gradient rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary-light dark:bg-primary-dark text-white rounded-full p-3 mr-4">
+                            <i class="fas fa-user-tie text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Elie D. DOVONON</h3>
+                            <p class="text-secondary-light dark:text-secondary-dark">Développeur à SCB LAFARGE</p>
+                        </div>
+                    </div>
+                    <div class="pl-16">
+                        <a href="tel:+22997920800"
+                            class="flex items-center text-gray-600 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark transition">
+                            <i class="fas fa-phone mr-2"></i> +229 97 92 08 00
+                        </a>
+                    </div>
+                </div>
+                <div class="card-gradient rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary-light dark:bg-primary-dark text-white rounded-full p-3 mr-4">
+                            <i class="fas fa-user-tie text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Hamid KPETRE</h3>
+                            <p class="text-secondary-light dark:text-secondary-dark">Développeur Front End Freelance</p>
+                        </div>
+                    </div>
+                    <div class="pl-16">
+                        <a href="tel:+22967388003"
+                            class="flex items-center text-gray-600 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark transition">
+                            <i class="fas fa-phone mr-2"></i> +229 67 38 80 03
+                        </a>
+                    </div>
+                </div>
+                <div class="card-gradient rounded-2xl p-6 shadow-lg">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary-light dark:bg-primary-dark text-white rounded-full p-3 mr-4">
+                            <i class="fas fa-user-tie text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold">Arnauld D. KANHONOU</h3>
+                            <p class="text-secondary-light dark:text-secondary-dark">Chef Service Informatique à SCB
+                                LAFARGE</p>
+                        </div>
+                    </div>
+                    <div class="pl-16">
+                        <a href="tel:+22966522645"
+                            class="flex items-center text-gray-600 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark transition">
+                            <i class="fas fa-phone mr-2"></i> +229 66 52 26 45
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-8 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-2xl font-bold">Auscence I. Charles KANHONOU</h2>
+                    <p>ANALYSTE PROGRAMMEUR</p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="mailto:auscencek@gmail.com" class="text-white hover:text-gray-200 transition">
+                        <i class="fas fa-envelope text-2xl"></i>
+                    </a>
+                    <a href="tel:+22962789340" class="text-white hover:text-gray-200 transition">
+                        <i class="fas fa-phone text-2xl"></i>
+                    </a>
+                    <a href="https://github.com/AUSCENCE" target="_blank"
+                        class="text-white hover:text-gray-200 transition">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-sm">
+                <p>&copy; 2024 Tous droits réservés</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        // Check for saved theme preference or use preferred color scheme
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia(
+                '(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+            themeToggle.checked = true;
+        } else {
+            html.classList.remove('dark');
+            themeToggle.checked = false;
+        }
+
+        // Listen for toggle changes
+        themeToggle.addEventListener('change', () => {
+            if (themeToggle.checked) {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        // Portfolio filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        // ✅ Activer la catégorie "web" par défaut au chargement
+        window.addEventListener('DOMContentLoaded', () => {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            const defaultBtn = document.querySelector('.filter-btn[data-filter="web"]');
+            if (defaultBtn) defaultBtn.classList.add('active');
+            filterPortfolio('web');
+        });
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to the clicked button
+                button.classList.add('active');
+
+                // Filter portfolio items
+                filterPortfolio(filter);
+            });
+        });
+
+        function filterPortfolio(category) {
+            portfolioItems.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
